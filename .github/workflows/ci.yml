@@ -23,5 +23,5 @@ jobs:
       run: docker build -t next-js .
 
     - name: Push to Dockerhub
-      run: docker push mirzasafwan/next-js:latest
+      run: docker push mirzasafwan1/next-js:latest
 
