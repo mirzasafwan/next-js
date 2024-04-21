@@ -18,13 +18,5 @@ jobs:
     - run: sudo docker pull mirzasafwan1/next-js
     - name: Delete Old Docker Image
     - run: sudo docker pull mirzasafwan1/next-js
-      env:
-        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
-        
-    - name: Build the Docker image
-      run: docker build -t mirzasafwan1/next-js .
-    - name: Push to Dockerhub
-      run: docker push mirzasafwan1/next-js:latest
+     
 
