@@ -1,0 +1,24 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Pull Docker Image
+    - run: sudo docker pull mirzasafwan1/next-js
+    - name: Delete Old Docker Container
+    - run: sudo docker rm -f next-js || true
+    - name: Run Docker Container
+    - run: sudo docker run -d 3000:3000 --name next-js mirzasafwan1/next-js
+      
+
