@@ -1,19 +1,23 @@
-name: CI Pipeline
+name: CD Pipeline
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
 
 
 jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Login Docker Hub
+    - name: Pull Docker Image
+    - run: sudo docker pull mirzasafwan1/next-js
+    - name: Delete Old Docker Image
+    - run: sudo docker pull mirzasafwan1/next-js
       env:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
